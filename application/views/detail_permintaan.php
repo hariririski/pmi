@@ -76,7 +76,7 @@
                   </div>
               </div>
             <?php } ?>
-                <p align="right"><button type="submit" class="btn btn-info btn-medium">Tambah</button></p>
+          
             </form>
 
           </div>
