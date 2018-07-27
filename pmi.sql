@@ -1,20 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2.2
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2018 at 06:24 AM
--- Server version: 5.5.27
--- PHP Version: 5.4.7
+-- Generation Time: Jul 27, 2018 at 10:13 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 5.5.38
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `pmi`
@@ -26,13 +26,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `jadwal_mobil`
 --
 
-CREATE TABLE IF NOT EXISTS `jadwal_mobil` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `jadwal_mobil` (
+  `id` int(10) NOT NULL,
   `tgl_update` date NOT NULL,
   `waktu` time NOT NULL,
-  `alamat` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+  `alamat` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jadwal_mobil`
@@ -53,23 +52,29 @@ INSERT INTO `jadwal_mobil` (`id`, `tgl_update`, `waktu`, `alamat`) VALUES
 -- Table structure for table `kantong_darah`
 --
 
-CREATE TABLE IF NOT EXISTS `kantong_darah` (
-  `tgl_input` date NOT NULL,
+CREATE TABLE `kantong_darah` (
   `id_ukuran` int(11) NOT NULL,
   `id_komponen` int(11) NOT NULL,
   `id_pendonor` varchar(50) DEFAULT NULL,
-  `gol_darah` varchar(10) NOT NULL,
-  `id_darah` int(11) NOT NULL AUTO_INCREMENT,
-  `jumlah` int(11) NOT NULL,
-  PRIMARY KEY (`id_darah`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `id_darah` int(11) NOT NULL,
+  `pesan` int(3) DEFAULT NULL,
+  `id_rs` varchar(50) DEFAULT NULL,
+  `user` varchar(50) DEFAULT NULL,
+  `tanggal pesan` date DEFAULT NULL,
+  `tanggal_input` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `id_pmi` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kantong_darah`
 --
 
-INSERT INTO `kantong_darah` (`tgl_input`, `id_ukuran`, `id_komponen`, `id_pendonor`, `gol_darah`, `id_darah`, `jumlah`) VALUES
-('2018-07-04', 1, 1, '1', 'B', 1, 0);
+INSERT INTO `kantong_darah` (`id_ukuran`, `id_komponen`, `id_pendonor`, `id_darah`, `pesan`, `id_rs`, `user`, `tanggal pesan`, `tanggal_input`, `id_pmi`) VALUES
+(1, 6, '13', 3331, NULL, NULL, NULL, NULL, '2018-07-27 17:54:09', 4),
+(1, 6, '3', 3333, NULL, NULL, NULL, NULL, '2018-07-27 17:49:09', 4),
+(1, 5, '1', 123456789, NULL, NULL, NULL, NULL, '2018-07-27 17:33:56', 2),
+(1, 4, '16', 987654321, NULL, NULL, NULL, NULL, '2018-07-27 17:34:01', 2),
+(1, 1, '9', 2147483647, NULL, NULL, NULL, NULL, '2018-07-27 17:34:03', 2);
 
 -- --------------------------------------------------------
 
@@ -77,12 +82,10 @@ INSERT INTO `kantong_darah` (`tgl_input`, `id_ukuran`, `id_komponen`, `id_pendon
 -- Table structure for table `komponen`
 --
 
-CREATE TABLE IF NOT EXISTS `komponen` (
-  `id_komponen` int(11) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_komponen`),
-  UNIQUE KEY `nama` (`nama`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+CREATE TABLE `komponen` (
+  `id_komponen` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `komponen`
@@ -102,20 +105,39 @@ INSERT INTO `komponen` (`id_komponen`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pasien`
+--
+
+CREATE TABLE `pasien` (
+  `id_pasien` varchar(50) NOT NULL,
+  `nm_dokter` varchar(30) NOT NULL,
+  `nm_pasien` varchar(30) NOT NULL,
+  `diagnosa` varchar(30) NOT NULL,
+  `gol_darah` varchar(5) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `keterangan` varchar(50) DEFAULT NULL,
+  `verifikasi` int(3) DEFAULT NULL,
+  `jumlah_verifikasi` int(11) DEFAULT NULL,
+  `id_rs` varchar(50) NOT NULL,
+  `no_rekam_medis` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pendonor`
 --
 
-CREATE TABLE IF NOT EXISTS `pendonor` (
-  `id_pendonor` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pendonor` (
+  `id_pendonor` int(11) NOT NULL,
   `nama` varchar(30) NOT NULL,
   `alamat` varchar(50) NOT NULL,
   `no_hp` varchar(15) NOT NULL,
   `gol_darah` varchar(5) NOT NULL,
   `nik` varchar(20) NOT NULL,
   `pekerjaan` varchar(30) NOT NULL,
-  `j_kelamin` varchar(10) NOT NULL,
-  PRIMARY KEY (`id_pendonor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=151 ;
+  `j_kelamin` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pendonor`
@@ -276,19 +298,50 @@ INSERT INTO `pendonor` (`id_pendonor`, `nama`, `alamat`, `no_hp`, `gol_darah`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permintaan_darah`
+-- Table structure for table `permintaan`
 --
 
-CREATE TABLE IF NOT EXISTS `permintaan_darah` (
-  `user` varchar(30) NOT NULL,
+CREATE TABLE `permintaan` (
+  `id_permintaan` varchar(50) NOT NULL,
   `nm_dokter` varchar(30) NOT NULL,
   `nm_pasien` varchar(30) NOT NULL,
   `diagnosa` varchar(30) NOT NULL,
   `gol_darah` varchar(5) NOT NULL,
   `jumlah` int(11) NOT NULL,
-  `keterangan` varchar(50) NOT NULL,
-  `verifikasi` int(11) NOT NULL
+  `verifikasi` int(3) DEFAULT NULL,
+  `jumlah_verifikasi` int(11) DEFAULT NULL,
+  `id_rs` varchar(50) NOT NULL,
+  `no_rekam_medis` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `permintaan`
+--
+
+INSERT INTO `permintaan` (`id_permintaan`, `nm_dokter`, `nm_pasien`, `diagnosa`, `gol_darah`, `jumlah`, `verifikasi`, `jumlah_verifikasi`, `id_rs`, `no_rekam_medis`) VALUES
+('cOgo9sfLQK', 'Zulfian', 'Anto', 'Jantung', 'B', 2, NULL, NULL, '1171015', '123456');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pesan`
+--
+
+CREATE TABLE `pesan` (
+  `id_rs` varchar(50) NOT NULL,
+  `id_darah` varchar(50) DEFAULT NULL,
+  `id_pesan` int(50) NOT NULL,
+  `id_pmi` varchar(50) NOT NULL,
+  `id_permintaan` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pesan`
+--
+
+INSERT INTO `pesan` (`id_rs`, `id_darah`, `id_pesan`, `id_pmi`, `id_permintaan`) VALUES
+('1171015', NULL, 3, '2', 'cOgo9sfLQK'),
+('1171015', NULL, 4, '2', 'cOgo9sfLQK');
 
 -- --------------------------------------------------------
 
@@ -296,51 +349,36 @@ CREATE TABLE IF NOT EXISTS `permintaan_darah` (
 -- Table structure for table `rs`
 --
 
-CREATE TABLE IF NOT EXISTS `rs` (
+CREATE TABLE `rs` (
   `id_rs` varchar(50) NOT NULL,
   `nm_rs` varchar(50) NOT NULL,
   `type` varchar(20) NOT NULL,
   `no_hp` varchar(15) NOT NULL,
   `alamat` varchar(50) NOT NULL,
   `email` varchar(30) NOT NULL,
-  PRIMARY KEY (`id_rs`)
+  `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rs`
 --
 
-INSERT INTO `rs` (`id_rs`, `nm_rs`, `type`, `no_hp`, `alamat`, `email`) VALUES
-('1171015', 'RS Umum Daerah Dr. Zainoel Abidin', 'A', '0651-34562', 'Jl. Tgk Daud Beureueh, NO. 108 B. Aceh', 'www.rsuza.acehprov.go.id'),
-('1171026', 'RS Tk. II Iskandar Muda Banda Aceh', 'B', ' 065124712', 'Jl. T. Hamzah Bendahara No. 1 Banda Aceh', ' rumahsakitim@yahoo.com'),
-('1171041', 'RS Jiwa Banda Aceh', 'A', '0651-32020', 'Jl. Dr.T.Syarief Thayeb,No.25 Banda Aceh', 'sirs@acehprov.go.id'),
-('1171085', 'RS Umum Malahayati', '', '0651- 46115', 'Jl. Cut Nyak Dhien No : 498 ,Banda Aceh', ' rumahsakitmalahayati@yahoo.co'),
-('1171096', 'RS Umum Harapan Bunda Banda Aceh', 'C', '0651- 48114', 'Jl. Teuku Umar 181,Banda Aceh', 'rsharapanbunda181@gmail.com'),
-('1171106', 'RS Umum Teuku Fakinah', 'C', '0651 41454', 'Jl. Jend.Sudirman 27-29,Banda Aceh', ' teungkufakinah.hospital@yahoo'),
-('1171110', 'RS Umum Daerah Meuraxa', 'B', '	  0651-43097', 'Jalan Soekarno Hatta Km.2 Desa Mibo Kecamatan Band', ' rsum@bandaacehkota.go.id'),
-('1171121', 'RS Ibu dan Anak Propinsi NAD', 'B', ' 0651-637796', 'Jl. Prof.A.Madjid Ibrahim I, No. 3 Banda Aceh', ' rsia@acehprov.go.id'),
-('1171132', 'RS Umum Permata Hati', 'C', ' 0651-7428872', 'Jl. Sultan Iskandar Muda No.217,Banda Aceh', ''),
-('1171143', 'RS Bhayangkara Banda Aceh', 'C', '0651-41470', 'Jl. Cut Nyak Dhien No. 23, Lamteumen Barat Banda A', 'bhayangkara_banda_aceh@yahoo.c'),
-('1171145', 'RS Umum Meutia', 'D', ' 0651-33149', 'Jl. Cut Meutia No. 55', ''),
-('1171146', 'RS Umum Cempaka Az Zahra Banda Aceh', 'C', ' 0651-31066', 'Jl. Pocut Baren, 36-40', ' rsu_azzahra@yahoo.com'),
-('1171147', 'RS Umum Prince Nayef Bin Abdul Aziz Syiah Kuala', 'D', '08116819755', 'Jl. Lingkar Kampus', ' hrd.rspn@gmail.com'),
-('1171148', 'RS Umum Bulan Sabit Merah Indonesia Aceh', 'C', '0651-638701', 'Jl. Sultan Malikul Saleh No. 17 Lamlagang, Kec. Ba', ' deydifitriady@yahoo.co.id'),
-('1171150', 'RS Umum Pertamedika Ummi Rosnati', 'C', '0651 35092', 'Jl. Sekolah No. 5 Gampoeng Ateuk Pahlawan, Kecamat', 'office@rspur.co.id');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `test`
---
-
-CREATE TABLE IF NOT EXISTS `test` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(30) NOT NULL,
-  `alamat` varchar(50) NOT NULL,
-  `no_hp` varchar(15) NOT NULL,
-  `gol_darah` varchar(5) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+INSERT INTO `rs` (`id_rs`, `nm_rs`, `type`, `no_hp`, `alamat`, `email`, `password`) VALUES
+('1171015', 'RS Umum Daerah Dr. Zainoel Abidin', 'A', '0651-34562', 'Jl. Tgk Daud Beureueh, NO. 108 B. Aceh', 'www.rsuza.acehprov.go.id', '3a2d7564baee79182ebc7b65084aabd1'),
+('1171026', 'RS Tk. II Iskandar Muda Banda Aceh', 'B', ' 065124712', 'Jl. T. Hamzah Bendahara No. 1 Banda Aceh', ' rumahsakitim@yahoo.com', ''),
+('1171041', 'RS Jiwa Banda Aceh', 'A', '0651-32020', 'Jl. Dr.T.Syarief Thayeb,No.25 Banda Aceh', 'sirs@acehprov.go.id', ''),
+('1171085', 'RS Umum Malahayati', '', '0651- 46115', 'Jl. Cut Nyak Dhien No : 498 ,Banda Aceh', ' rumahsakitmalahayati@yahoo.co', ''),
+('1171096', 'RS Umum Harapan Bunda Banda Aceh', 'C', '0651- 48114', 'Jl. Teuku Umar 181,Banda Aceh', 'rsharapanbunda181@gmail.com', ''),
+('1171106', 'RS Umum Teuku Fakinah', 'C', '0651 41454', 'Jl. Jend.Sudirman 27-29,Banda Aceh', ' teungkufakinah.hospital@yahoo', ''),
+('1171110', 'RS Umum Daerah Meuraxa', 'B', '	  0651-43097', 'Jalan Soekarno Hatta Km.2 Desa Mibo Kecamatan Band', ' rsum@bandaacehkota.go.id', ''),
+('1171121', 'RS Ibu dan Anak Propinsi NAD', 'B', ' 0651-637796', 'Jl. Prof.A.Madjid Ibrahim I, No. 3 Banda Aceh', ' rsia@acehprov.go.id', ''),
+('1171132', 'RS Umum Permata Hati', 'C', ' 0651-7428872', 'Jl. Sultan Iskandar Muda No.217,Banda Aceh', '', ''),
+('1171143', 'RS Bhayangkara Banda Aceh', 'C', '0651-41470', 'Jl. Cut Nyak Dhien No. 23, Lamteumen Barat Banda A', 'bhayangkara_banda_aceh@yahoo.c', ''),
+('1171145', 'RS Umum Meutia', 'D', ' 0651-33149', 'Jl. Cut Meutia No. 55', '', ''),
+('1171146', 'RS Umum Cempaka Az Zahra Banda Aceh', 'C', ' 0651-31066', 'Jl. Pocut Baren, 36-40', ' rsu_azzahra@yahoo.com', ''),
+('1171147', 'RS Umum Prince Nayef Bin Abdul Aziz Syiah Kuala', 'D', '08116819755', 'Jl. Lingkar Kampus', ' hrd.rspn@gmail.com', ''),
+('1171148', 'RS Umum Bulan Sabit Merah Indonesia Aceh', 'C', '0651-638701', 'Jl. Sultan Malikul Saleh No. 17 Lamlagang, Kec. Ba', ' deydifitriady@yahoo.co.id', ''),
+('1171150', 'RS Umum Pertamedika Ummi Rosnati', 'C', '0651 35092', 'Jl. Sekolah No. 5 Gampoeng Ateuk Pahlawan, Kecamat', 'office@rspur.co.id', '');
 
 -- --------------------------------------------------------
 
@@ -348,13 +386,11 @@ CREATE TABLE IF NOT EXISTS `test` (
 -- Table structure for table `ukuran`
 --
 
-CREATE TABLE IF NOT EXISTS `ukuran` (
-  `id_ukuran` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ukuran` (
+  `id_ukuran` int(11) NOT NULL,
   `ukuran` varchar(30) NOT NULL,
-  `harga` varchar(10) NOT NULL,
-  PRIMARY KEY (`id_ukuran`),
-  UNIQUE KEY `ukuran` (`ukuran`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `harga` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ukuran`
@@ -369,18 +405,133 @@ INSERT INTO `ukuran` (`id_ukuran`, `ukuran`, `harga`) VALUES
 -- Table structure for table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE `user` (
   `nama` varchar(50) NOT NULL,
   `user` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
   `no_hp` varchar(15) NOT NULL,
   `alamat` varchar(50) NOT NULL,
-  `id_pmi` varchar(30) NOT NULL,
-  `passwod` varchar(50) NOT NULL,
-  `lever` int(2) NOT NULL,
-  PRIMARY KEY (`user`)
+  `password` varchar(50) NOT NULL,
+  `level` int(2) NOT NULL,
+  `id_pmi` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`nama`, `user`, `email`, `no_hp`, `alamat`, `password`, `level`, `id_pmi`) VALUES
+('admin', 'admin', 'admin', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 1),
+('PMI Banda Aceh', 'pmi', 'pmi', 'pmi', 'pmi', '995f0d99ad310ee6ba78be2ce2e84e3f', 2, 2),
+('PMI Aceh Besar', 'pmi_aceh_besar', 'pmi', 'pmi', 'pmi', '995f0d99ad310ee6ba78be2ce2e84e3f', 2, 4),
+('rs', 'rs', 'rs', 'rs', 'rs', '3a2d7564baee79182ebc7b65084aabd1', 3, 3);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `jadwal_mobil`
+--
+ALTER TABLE `jadwal_mobil`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kantong_darah`
+--
+ALTER TABLE `kantong_darah`
+  ADD PRIMARY KEY (`id_darah`);
+
+--
+-- Indexes for table `komponen`
+--
+ALTER TABLE `komponen`
+  ADD PRIMARY KEY (`id_komponen`),
+  ADD UNIQUE KEY `nama` (`nama`);
+
+--
+-- Indexes for table `pasien`
+--
+ALTER TABLE `pasien`
+  ADD PRIMARY KEY (`id_pasien`);
+
+--
+-- Indexes for table `pendonor`
+--
+ALTER TABLE `pendonor`
+  ADD PRIMARY KEY (`id_pendonor`);
+
+--
+-- Indexes for table `permintaan`
+--
+ALTER TABLE `permintaan`
+  ADD PRIMARY KEY (`id_permintaan`);
+
+--
+-- Indexes for table `pesan`
+--
+ALTER TABLE `pesan`
+  ADD PRIMARY KEY (`id_pesan`);
+
+--
+-- Indexes for table `rs`
+--
+ALTER TABLE `rs`
+  ADD PRIMARY KEY (`id_rs`);
+
+--
+-- Indexes for table `ukuran`
+--
+ALTER TABLE `ukuran`
+  ADD PRIMARY KEY (`id_ukuran`),
+  ADD UNIQUE KEY `ukuran` (`ukuran`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`user`),
+  ADD UNIQUE KEY `id_pmi` (`id_pmi`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `jadwal_mobil`
+--
+ALTER TABLE `jadwal_mobil`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `kantong_darah`
+--
+ALTER TABLE `kantong_darah`
+  MODIFY `id_darah` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2147483647;
+--
+-- AUTO_INCREMENT for table `komponen`
+--
+ALTER TABLE `komponen`
+  MODIFY `id_komponen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `pendonor`
+--
+ALTER TABLE `pendonor`
+  MODIFY `id_pendonor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+--
+-- AUTO_INCREMENT for table `pesan`
+--
+ALTER TABLE `pesan`
+  MODIFY `id_pesan` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `ukuran`
+--
+ALTER TABLE `ukuran`
+  MODIFY `id_ukuran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_pmi` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
