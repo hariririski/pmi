@@ -27,7 +27,8 @@
 
             </p>
 
-            <form action="#" class="page-login__form">
+            <form action="<?php echo site_url();?>proses_login" method="POST" class="page-login__form">
+                <?php echo $this->session->flashdata('pesan')?>
                 <div class="form-group">
                     <a href="<?php echo site_url();?>pendonor" class="btn btn-outline-info btn-lg btn-block">
                         <span class="text">Pendonor</span>
@@ -38,18 +39,18 @@
 
                 <div class="form-group">
                     <div class="form-control-inline-icon inline-icon-right">
-                        <input id="email" type="text" class="form-control" placeholder="User">
+                        <input id="email" type="text" class="form-control" placeholder="User" name="username">
                         <span class="icon iconfont-right iconfont-user"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-control-inline-icon inline-icon-right">
-                        <input id="password" type="password" class="form-control" placeholder="Password">
+                        <input id="password" type="password" class="form-control" placeholder="Password" name="password">
                         <span class="icon iconfont-right iconfont-block"></span>
                     </div>
                 </div>
                 <div class="form-group mb-0">
-                    <a href="<?php site_url();?>rs/profil_rs" ><button type="button" class="btn btn-primary btn-block page-login__submit-btn">Login</button></a>
+                    <button type="submit" class="btn btn-primary btn-block page-login__submit-btn">Login</button>
                 </div>
             </form>
         </div>

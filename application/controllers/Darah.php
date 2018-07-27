@@ -20,33 +20,37 @@ class Darah extends CI_Controller {
 	 */
 	 function __construct() {
         parent::__construct();
-       $this->load->library('session');
+      $this->load->library('session');
+			$this->load->model('M_lihat_data_stok');
+			$this->load->model('M_lihat_data_komponen');
+			$this->load->model('M_pmi');
     }
 	public function lihat_stok_darah()
 	{
-		$this->load->view('lihat_stok_darah');
+		$data['data'] = $this->M_pmi->lihat();
+		$this->load->view('stok_darah_pmi',$data);
 	}
-	public function darah_a()
+	public function stok_darah_pmi()
 	{
-		$this->load->view('darah_a');
+		$id=$_GET['id'];
+		$data['pmi'] = $this->M_pmi->lihat_pmi($id);
+		$data['stok'] = $this->M_lihat_data_stok->stok($id);
+		$this->load->view('lihat_stok_darah',$data);
 	}
-	public function darah_b()
+	public function detail()
 	{
-		$this->load->view('darah_b');
+		$gol_darah=$_GET['gol_darah'];
+		$id=$_GET['id'];
+		$data['komponen'] = $this->M_lihat_data_stok->komponen(	$id,$gol_darah);
+		$data['data_komponen1'] = $this->M_lihat_data_komponen->get_user_all();
+		$this->load->view('detail_darah',$data);
 	}
-	public function darah_ab()
-	{
-		$this->load->view('darah_ab');
-	}
-	public function darah_o()
-	{
-		$this->load->view('darah_o');
-	}
+
 	public function permintaan_darah()
 	{
 		$this->load->view('permintaan_darah');
 	}
-				
+
 	public function tambah_stok()
 	{
 		$this->load->model('M_lihat_data_ukuran');
@@ -54,16 +58,18 @@ class Darah extends CI_Controller {
 		$this->load->model('M_lihat_data_komponen');
 		$data['data_komponen1'] = $this->M_lihat_data_komponen->get_user_all();
 		$this->load->model('M_lihat_data_pendonor');
-		$data['data_pendonor'] = $this->M_lihat_data_pendonor->get_user_all();
+		$data['pendonor'] = $this->M_lihat_data_pendonor->get_user_all();
+		$this->load->model('M_lihat_data_stok');
+		$data['stok'] = $this->M_lihat_data_stok->data();
 		$this->load->view('tambah_stok', $data);
 	}
-	function proses_tambah_stok(){ 
+	function proses_tambah_stok(){
 			$this->load->model('M_tambah_stok');
 			$cek=$this->M_tambah_stok->proses();
 			if($cek){
 				$data2="<script> alert('Data Berhasil di Input')</script>";
 				$this->session->set_flashdata('pesan', $data2);
-				redirect('darah/lihat_stok_darah');
+				redirect('darah//tambah_stok');
 			}else{
 				$data2="<script> alert('Input Data Gagal')</script>";
 				$this->session->set_flashdata('pesan', $data2);
@@ -72,7 +78,5 @@ class Darah extends CI_Controller {
 			}
 
 		}
-	
+
 }
-
-

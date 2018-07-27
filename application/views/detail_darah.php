@@ -1,3 +1,14 @@
+<?php
+$i=0;
+$stok_komponen;
+ foreach($komponen as $data_komponen2){
+   $stok_komponen[$data_komponen2->id_komponen]=$data_komponen2->jumlah;
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <!-- BEGIN HEAD -->
@@ -30,18 +41,18 @@
 <?php echo $this->load->view('share/menu', '', TRUE);?>
 
 <div class="header-default">
-  
-   
+
+
 </div>
 <div class="job-overview">
     <header class="job-overview__header">
         <div class="container">
-            <h4 class="job-overview__header-heading">Golongan Darah A<span class="badge badge-denim"></span></h4>
+            <h4 class="job-overview__header-heading">Golongan Darah <?php echo $_GET['gol_darah']?><span class="badge badge-denim"></span></h4>
         </div>
     </header>
 	<br>
     <div class="container">
-	  
+
         <div class="row">
             <div class="col-lg-12">
 			<div>
@@ -60,62 +71,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                
-                    <tr>
-                        <td>1</td>
-                        <td>Whole Blood</td>
+                  <?php
+                  $i=0;
+                  foreach($data_komponen1 as $data_komponen){
+                  $i++;
+                  ?>
+                        <td><?php echo $i;?></td>
+                        <td><?php echo $data_komponen->nama;?></td>
+                        <td><?php if(isset($stok_komponen[$data_komponen->id_komponen])){echo $stok_komponen[$data_komponen->id_komponen];}else{echo'0';}?></td>
 
-                        <td class="center">35</td>
-                    </tr>
-					<tr>
-                        <td>2</td>
-                        <td>Packed Red Cell</td>
+                  </tr>
+                <?php } ?>
 
-                        <td class="center">53</td>
-                    </tr>
-					<tr>
-                        <td>3</td>
-                        <td>Trombocyte Concentrate</td>
 
-                        <td class="center">55</td>
-                    </tr>
-					<tr>
-                        <td>4</td>
-                        <td>Fresh Plasma</td>
-
-                        <td class="center">0</td>
-                    </tr>
-					<tr>
-                        <td>5</td>
-                        <td>Cryoprecipitated AHF</td>
-
-                        <td class="center">0</td>
-                    </tr>
-					<tr>
-                        <td>6</td>
-                        <td>Liquid Plasma</td>
-
-                        <td class="center">0</td>
-                    </tr>
-					<tr>
-                        <td>7</td>
-                        <td>Washed Erytrocyte</td>
-
-                        <td class="center">0</td>
-                    </tr>
-					<tr>
-                        <td>8</td>
-                        <td>Fresh Plasma</td>
-
-                        <td class="center">0</td>
-                    </tr>
-					<tr>
-                        <td>9</td>
-                        <td>Leucodeplated</td>
-
-                        <td class="center">0</td>
-                        
-                    </tr>
 
                 </tbody>
             </table>
@@ -164,7 +132,7 @@
             });
         });
     })(jQuery);
-	
+
 </script>
   <script src="<?php site_url(); ?>dist/table/vendor/metisMenu/metisMenu.min.js"></script>
 

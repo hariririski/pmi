@@ -30,67 +30,48 @@
 <?php echo $this->load->view('share/menu', '', TRUE);?>
 
 <div class="header-default">
-  
-   
+
+
 </div>
 <div class="job-overview">
     <header class="job-overview__header">
         <div class="container">
-            <h4 class="job-overview__header-heading">Lihat Stok Darah<span class="badge badge-denim"></span></h4>
+            <h4 class="job-overview__header-heading">Lihat Stok Darah <?php foreach($pmi as $pmi1){ echo $pmi1->nama; }?><span class="badge badge-denim"></span></h4>
         </div>
     </header>
 	<br>
     <div class="container">
-	  
+
         <div class="row">
             <div class="col-lg-12">
-			<div>
-			<center><a href="<?php echo site_url();?>tambah_stok" type="submit" class="btn btn-success btn-sm">Tambah Stok</a></center>
-			</div>
+
 			<br>
                    <div class="card card-outline-info mb-3">
-          <div class="card-header bg-info">Lihat Stok Darah</div>
+          <div class="card-header bg-info">Lihat Stok Darah <?php foreach($pmi as $pmi2){ echo $pmi2->nama; }?></div>
           <div class="card-block">
             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr>
                         <th>NO</th>
-                        <th>Stok Darah</th>
+                        <th>Golongan Darah</th>
                         <th>Jumlah</th>
-                        <th>Action</th>
+                        <th>Detail</th>
                     </tr>
                 </thead>
                 <tbody>
-                
+                  <?php
+                  $i=0;
+                   foreach($stok as $data){
+                   $i++;
+
+                  ?>
                     <tr>
-                        <td>1</td>
-                        <td>A</td>
-
-                        <td class="center">35</td>
-                        <td class="center"><a href="<?php echo site_url();?>darah/darah_a"><button type="button" class="btn btn-danger btn-xs">Lihat Selengkapnya</button></td>
+                        <td><?php echo $i?></td>
+                        <td><?php echo $data->gol_darah?></td>
+                        <td><?php echo $data->stok?></td>
+                        <td class="center"><a href="<?php echo site_url();?>darah/detail?id=<?php echo $_GET['id']?>&&gol_darah=<?php echo $data->gol_darah?>"><button type="button" class="btn btn-danger btn-xs">Lihat Selengkapnya</button></td>
                     </tr>
-					<tr>
-                        <td>2</td>
-                        <td>B</td>
-
-                        <td class="center">53</td>
-                        <td class="center"><a href="<?php echo site_url();?>darah/darah_b"><button type="button" class="btn btn-danger btn-xs">Lihat Selengkapnya</button></td>
-                    </tr>
-					<tr>
-                        <td>3</td>
-                        <td>AB</td>
-
-                        <td class="center">55</td>
-                        <td class="center"><a href="<?php echo site_url();?>darah/darah_ab"><button type="button" class="btn btn-danger btn-xs">Lihat Selengkapnya</button></td>
-                    </tr>
-					<tr>
-                        <td>4</td>
-                        <td>0</td>
-
-                        <td class="center">67</td>
-                        <td class="center"><a href="<?php echo site_url();?>darah/darah_o"><button type="button" class="btn btn-danger btn-xs">Lihat Selengkapnya</button></td>
-                    </tr>
-
+                  <?php } ?>
                 </tbody>
             </table>
             <!-- /.table-responsive -->
@@ -139,7 +120,7 @@
             });
         });
     })(jQuery);
-	
+
 </script>
   <script src="<?php site_url(); ?>dist/table/vendor/metisMenu/metisMenu.min.js"></script>
 

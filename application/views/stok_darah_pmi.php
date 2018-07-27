@@ -36,68 +36,44 @@
 <div class="job-overview">
     <header class="job-overview__header">
         <div class="container">
-            <h4 class="job-overview__header-heading">TAMBAH UKURAN KANTONG DARAH<span class="badge badge-denim"></span></h4>
+            <h4 class="job-overview__header-heading">PMI<span class="badge badge-denim"></span></h4>
         </div>
     </header>
 	<br>
     <div class="container">
-	  <div class="card card-outline-success mb-3">
-          <div class="card-header bg-success">Tambah Jenis Ukuran</div>
-          <div class="card-block">
-		   <?php echo $this->session->flashdata('pesan')?>
-            <form class="page-contact__form" action="<?php echo site_url();?>login/proses_tambah_ukuran" method="POST" >
-              <div class="form-group row">
-                  <label for="example-text-input" class="col-3 col-form-label">Jenis Ukuran Kantong</label>
-                  <div class="col-9">
-                      <input class="form-control" type="text"  required name="ukuran" placeholder="Masukkan Jenis Ukuran">
-                  </div>
-				  <br>
-				  <br>
-				  <br>
-				  <label for="example-text-input" class="col-3 col-form-label">Harga</label>
-				  <div class="col-9">
-                      <input class="form-control" type="text"  required name="harga" placeholder="Masukkan Harga">
-                  </div>
 
-              </div>
-                <p align="right"><button type="submit" class="btn btn-info btn-medium">Tambah</button></p>
-            </form>
-
-          </div>
-      </div>
         <div class="row">
             <div class="col-lg-12">
-          <div class="card card-outline-info mb-3">
-          <div class="card-header bg-info">Lihat Data Ukuran</div>
+
+			<br>
+                   <div class="card card-outline-info mb-3">
+          <div class="card-header bg-info">Data PMI</div>
           <div class="card-block">
             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr>
                         <th>NO</th>
-                        <th>Ukuran</th>
-                        <th>Harga</th>
-                        <th>Edit</th>
-                        <th>Hapus</th>
+                        <th>Nama</th>
+                        <th>Alamat</th>
+                        <th>No HP</th>
+                        <th>Detail</th>
                     </tr>
                 </thead>
                 <tbody>
-                                     <?php
-											$j=0;
-													foreach($data_ukuran1 as $data){
-											?>
-                                    <tr class="odd gradeX">
-                                        <td><?php echo ++$j?></td>
-                                        <td><?php echo $data->ukuran; ?></td>
-                                        <td><?php echo $data->harga; ?></td>
+                  <?php
+                  $i=0;
+                   foreach($data as $data){
+                   $i++;
 
-										<td><a href="<?php echo base_url()?>edit_bidan?id_ukuran=<?php echo $data->id_ukuran?>"  ><button type="button" class="btn btn-success">Edit</button></a></td>
-										<?php
-										echo"<td class='center'><a href='". base_url()."login/proses_hapus_ukuran?id=".$data->id_ukuran."' onclick=\"return confirm('Apakah Anda Yakin Menghapus ?') \" title='Hapus'><button type='button' class='btn btn-danger'>Hapus</button></a>
-										</td>";
-										?>
-
-                                    </tr>
-                                    <?php } ?>
+                  ?>
+                    <tr>
+                        <td><?php echo $i?></td>
+                        <td><?php echo $data->nama?></td>
+                        <td><?php echo $data->alamat?></td>
+                        <td><?php echo $data->no_hp?></td>
+                        <td class="center"><a href="<?php echo site_url();?>darah/stok_darah_pmi?id=<?php echo $data->id_pmi?>"><button type="button" class="btn btn-danger btn-xs">Lihat Selengkapnya</button></td>
+                    </tr>
+                  <?php } ?>
                 </tbody>
             </table>
             <!-- /.table-responsive -->
@@ -108,7 +84,10 @@
     </div>
 </div>
 
-
+<script src="vendors/jquery/jquery.min.js"></script>
+<script src="vendors/tether/js/tether.min.js"></script>
+<script src="vendors/bootstrap/js/bootstrap.min.js"></script>
+<script src="js/dropdown.animate.js"></script>
 
 
 </body>
