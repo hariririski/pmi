@@ -46,8 +46,20 @@ class M_pemesanan extends CI_Model{
       }
       function data_permintaan()
       {
-          $id_rs= $this->session->userdata('rs');
-          $query=$this->db->query("SELECT * from permintaan left join rs on rs.id_rs=permintaan.id_rs");
+          $user=$this->session->userdata('user_data');
+          $query=$this->db->query("SELECT distinct rs.nm_rs, permintaan.no_rekam_medis, permintaan.nm_pasien, permintaan.nm_dokter, permintaan.diagnosa, permintaan.gol_darah , permintaan.jumlah, permintaan.verifikasi, permintaan.jumlah_verifikasi, permintaan.id_permintaan from permintaan left join rs on rs.id_rs=permintaan.id_rs left join pesan on pesan.id_permintaan=permintaan.id_permintaan where pesan.id_pmi='$user' ");
+          return $query->result();
+      }
+      function permintaan($id)
+      {
+
+          $query=$this->db->query("SELECT distinct rs.nm_rs, permintaan.no_rekam_medis, permintaan.nm_pasien, permintaan.nm_dokter, permintaan.diagnosa, permintaan.gol_darah , permintaan.jumlah, permintaan.verifikasi, permintaan.jumlah_verifikasi, permintaan.id_permintaan from permintaan left join rs on rs.id_rs=permintaan.id_rs left join pesan on pesan.id_permintaan=permintaan.id_permintaan where pesan.id_permintaan='$id' ");
+          return $query->result();
+      }
+      function pesan($id)
+      {
+
+          $query=$this->db->query("select * from pesan where id_permintaan='$id' ");
           return $query->result();
       }
 

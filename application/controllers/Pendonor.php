@@ -18,15 +18,33 @@ class Pendonor extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	 function __construct() {
+        parent::__construct();
+      $this->load->library('session');
+			 $this->load->model('M_pendonor');
+			// $this->load->model('M_lihat_data_komponen');
+			// $this->load->model('M_pmi');
+    }
 	public function index()
 	{
 		$this->load->view('login2');
 	}
 	public function data_pendonor()
 	{
-		$this->load->view('data_pendonor');
+		$cek=$this->M_pendonor->data();
+		if($cek){
+			$data['pendonor'] = $this->M_pendonor->data();;
+			$data['kantong'] = $this->M_pendonor->data_kantong();;
+			$this->load->view('detail_pendonor',$data);
+		}else{
+				redirect('login2');
+		}
+
 	}
-	
+	public function detail_pendonor()
+	{
+		$this->load->view('detail_pendonor');
+	}
+
 }
-
-

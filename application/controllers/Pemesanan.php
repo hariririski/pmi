@@ -39,7 +39,7 @@ class Pemesanan extends CI_Controller {
 
 		}
 		function proses_hapus_rs(){
-		$id=$_GET['id'];
+			$id=$_GET['id'];
 			$this->load->model('M_tambah_rs');
 			$cek=$this->M_tambah_rs->hapus($id);
 			if($cek){
@@ -63,6 +63,13 @@ class Pemesanan extends CI_Controller {
 		{
 			$data['permintaan'] = $this->M_pemesanan->data_permintaan();
 			$this->load->view('data_permintaan_darah',$data);
+		}
+		public function detail_permintaan()
+		{
+			$id=$_GET['id'];
+			$data['permintaan'] = $this->M_pemesanan->permintaan($id);
+			$data['pesan'] = $this->M_pemesanan->pesan($id);
+			$this->load->view('detail_permintaan',$data);
 		}
 
 }

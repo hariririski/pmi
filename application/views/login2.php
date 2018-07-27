@@ -54,10 +54,10 @@
 
             </p>
 
-            <form action="<?php site_url();?>pendonor/data_pendonor" class="page-login__form">
+            <form action="<?php site_url();?>pendonor/data_pendonor" class="page-login__form" method="POST">
                 <div class="form-group">
                     <div class="form-control-inline-icon inline-icon-right">
-                        <input id="email" type="text" name='kode_pendonor' class="form-control" placeholder="Kode Pendonor">
+                        <input id="email" type="text" name='kode_pendonor' required class="form-control" placeholder="Kode Pendonor">
                         <span class="icon iconfont-right iconfont-user"></span>
                     </div>
                 </div>
