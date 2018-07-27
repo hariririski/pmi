@@ -14,96 +14,101 @@
 
 
 
-    <!-- BEGIN THEME STYLES -->
-   <?php echo $this->load->view('share/css', '', TRUE);?>
-    <!-- END THEME STYLES -->
-	<link href="<?php site_url(); ?>dist/table/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-    <!-- <link href="<?php site_url(); ?>data_umum/table/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-    <link href="<?php site_url(); ?>dist/table/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-    <link href="<?php site_url(); ?>dist/table/dist/css/sb-admin-2.css" rel="stylesheet">
-    <link href="<?php site_url(); ?>dist/table/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-    <link href="<?php site_url(); ?>dist/table/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
 </head>
 <!-- BEGIN HEAD -->
 <body class="">
 
 <?php echo $this->load->view('share/menu', '', TRUE);?>
 
-<div class="header-default">
-  
-   
-</div>
 <div class="job-overview">
     <header class="job-overview__header">
-       
+        <div class="container">
+            <h4 class="job-overview__header-heading">Pemesanan Darah<span class="badge badge-denim"></span></h4>
+        </div>
     </header>
-	<br>
     <div class="container">
-	  
-        <div class="row">
-           <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-<div class="container">
-    <form class="page-contact__form">
-        <h2 class="page-contact__form-heading">Form Pengajuan Permintaan Darah</h2>
-        <div class="row justify-content-center">
-            <div class="col-lg-5">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="No Rekam Medik">
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-5">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Nama Dokter">
-                </div>
-            </div>
-            <div class="col-lg-5">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Diagnosa Penyakit">
-                </div>
-            </div>
-			<div class="col-lg-5">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Nama Pasien">
-                </div>
-            </div>
-			<div class="col-lg-5">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Golongan Darah">
-                </div>
-            </div>
-			<div class="col-lg-5">
-                <div class="form-group">
-                    <input type="number" class="form-control" placeholder="Jumlah">
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="form-group">
-                    <textarea rows="5" class="form-control" placeholder="Keteranggan"></textarea>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="form-group">
-                    <div class="btn btn-primary btn-lg">Kirim</div>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-            </div>
-           
-        </div>
+	  <div class="card card-outline-success mb-3">
+          <div class="card-header bg-success">Tambah Pemesanan</div>
+          <div class="card-block">
+            <form  action="<?php echo site_url();?>pemesanan/proses_pemesanan" method="POST" >
+              <div class="form-group row">
+                      <label for="example-text-input" class="col-3 col-form-label">Pilih PMI</label>
+                      <div class="col-9">
+                        <select class="form-control select2-form-control " name="pmi" required="" tabindex="-1" aria-hidden="true">
+                              <option value="">Pilih PMI</option>
+                              <?php
+                                       $i=0;
+                                        foreach($pmi as $data_pmi){
+                                        $i++;
+                                        ?>
+                                         <option value="<?php echo $data_pmi->id_pmi?>"><?php echo $data_pmi->nama ;?> </option>
+                              <?php }?>
+
+
+                        </select>
+                      </div>
+              </div>
+              <div class="form-group row">
+                  <label for="example-text-input" class="col-3 col-form-label">No Rekam Medis </label>
+                  <div class="col-9">
+                      <input class="form-control" type="text"  required name="no_rekam_medis" placeholder="NO Rekam Medis">
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label for="example-text-input" class="col-3 col-form-label">Nama Pasien </label>
+                  <div class="col-9">
+                      <input class="form-control" type="text"  required name="nama_pasien" placeholder="Nama Pasien">
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label for="example-text-input" class="col-3 col-form-label">Diagnosa </label>
+                  <div class="col-9">
+                      <input class="form-control" type="text"  required name="diagnosa" placeholder="Diagnosa">
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label for="example-text-input" class="col-3 col-form-label">Nama Dokter</label>
+                  <div class="col-9">
+                      <input class="form-control" type="text"  required name="nama_dokter" placeholder="Nama Dokter">
+                  </div>
+              </div>
+              <div class="form-group row">
+                      <label for="example-text-input" class="col-3 col-form-label">Golongan Darah</label>
+                      <div class="col-9">
+                        <select class="form-control select2-form-control " name="gol_darah" required="" tabindex="-1" aria-hidden="true">
+                              <option value="">Pilih Golongan Darah</option>
+                              <option value="A">A</option>
+                              <option value="A+">A+</option>
+                              <option value="B">B</option>
+                              <option value="B+">B+</option>
+                              <option value="O">O</option>
+                              <option value="O+">O+</option>
+                              <option value="AB">AB</option>
+                              <option value="AB+">AB+</option>
+
+
+                        </select>
+                      </div>
+              </div>
+              <div class="form-group row">
+                  <label for="example-text-input" class="col-3 col-form-label">Jumlah</label>
+                  <div class="col-9">
+                      <input class="form-control" type="number"  required name="jumlah" placeholder="Jumlah">
+                  </div>
+              </div>
+
+
+                <p align="right"><button type="submit" class="btn btn-info btn-medium">Tambah</button></p>
+            </form>
+
+          </div>
+
+
     </div>
-        </div>
-    </div>
 </div>
+
+
 
 <script src="vendors/jquery/jquery.min.js"></script>
 <script src="vendors/tether/js/tether.min.js"></script>
@@ -143,7 +148,7 @@
             });
         });
     })(jQuery);
-	
+
 </script>
   <script src="<?php site_url(); ?>dist/table/vendor/metisMenu/metisMenu.min.js"></script>
 

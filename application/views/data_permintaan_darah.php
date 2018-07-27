@@ -1,14 +1,3 @@
-<?php
-$i=0;
-$stok_komponen;
- foreach($komponen as $data_komponen2){
-   $stok_komponen[$data_komponen2->id_komponen]=$data_komponen2->jumlah;
-}
-
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <!-- BEGIN HEAD -->
@@ -22,12 +11,12 @@ $stok_komponen;
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <?php echo $this->load->view('share/css', '', TRUE);?>
 
-	<link href="<?php echo site_url(); ?>dist/table/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-    <!-- <link href="<?php echo site_url(); ?>data_umum/table/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-    <link href="<?php echo site_url(); ?>dist/table/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-    <link href="<?php echo site_url(); ?>dist/table/dist/css/sb-admin-2.css" rel="stylesheet">
-    <link href="<?php echo site_url(); ?>dist/table/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-    <link href="<?php echo site_url(); ?>dist/table/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo site_url(); ?>dist/table/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+      <!-- <link href="<?php echo site_url(); ?>data_umum/table/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+      <link href="<?php echo site_url(); ?>dist/table/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+      <link href="<?php echo site_url(); ?>dist/table/dist/css/sb-admin-2.css" rel="stylesheet">
+      <link href="<?php echo site_url(); ?>dist/table/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+      <link href="<?php echo site_url(); ?>dist/table/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <!-- BEGIN HEAD -->
 <body class="">
@@ -39,44 +28,55 @@ $stok_komponen;
 
 </div>
 <div class="job-overview">
-    <header class="job-overview__header">
+	<header class="job-overview__header">
         <div class="container">
-            <h4 class="job-overview__header-heading">Golongan Darah <?php echo $_GET['gol_darah']?><span class="badge badge-denim"></span></h4>
+            <h4 class="job-overview__header-heading">Data Permintaan Darah<span class="badge badge-denim"></span></h4>
         </div>
     </header>
 	<br>
     <div class="container">
-
         <div class="row">
             <div class="col-lg-12">
-
-			<br>
-           <div class="card card-outline-info mb-3">
-          <div class="card-header bg-info">Lihat Stok Darah</div>
+                   <div class="card card-outline-info mb-3">
+          <div class="card-header bg-info">Data Permintaan</div>
           <div class="card-block">
+
             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr>
                         <th>NO</th>
-                        <th>Produk</th>
+                        <th>Rumah Sakit</th>
+                        <th>No Rekam Medis</th>
+                        <th>Nama Pasien</th>
+                        <th>Nama Dokter</th>
+                        <th>Diagnosa</th>
+                        <th>GOl</th>
                         <th>Jumlah</th>
+                        <th>verifikasi</th>
+                        <th>jumlah_verifikasi</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                   <?php
                   $i=0;
-                  foreach($data_komponen1 as $data_komponen){
-                  $i++;
+                   foreach($permintaan as $data_permintaan){
+                   $i++;
                   ?>
-                        <td><?php echo $i;?></td>
-                        <td><?php echo $data_komponen->nama;?></td>
-                        <td><?php if(isset($stok_komponen[$data_komponen->id_komponen])){echo $stok_komponen[$data_komponen->id_komponen];}else{echo'0';}?></td>
-
+                  <tr>
+                      <td><?php echo $i?></td>
+                      <td><?php echo $data_permintaan->nm_rs?></td>
+                      <td><?php echo $data_permintaan->no_rekam_medis?></td>
+                      <td><?php echo $data_permintaan->nm_pasien?></td>
+                      <td><?php echo $data_permintaan->nm_dokter?></td>
+                      <td><?php echo $data_permintaan->diagnosa?></td>
+                      <td><?php echo $data_permintaan->gol_darah?></td>
+                      <td><?php echo $data_permintaan->jumlah?></td>
+                      <td><?php echo $data_permintaan->verifikasi?></td>
+                      <td><?php echo $data_permintaan->jumlah_verifikasi?></td>
+                      <td class="center"><a href="<?php echo site_url();?>"><button type="button" class="btn btn-danger btn-xs">Aksi</button></td>
                   </tr>
-                <?php } ?>
-
-
-
+                  <?php } ?>
                 </tbody>
             </table>
             <!-- /.table-responsive -->
@@ -86,6 +86,14 @@ $stok_komponen;
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
 
 </body>
 <?php echo $this->load->view('share/footer', '', TRUE);?>

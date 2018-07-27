@@ -13,16 +13,12 @@
     <!-- END GLOBAL MANDATORY STYLES -->
 
 
-
-    <!-- BEGIN THEME STYLES -->
-   <?php echo $this->load->view('share/css', '', TRUE);?>
-    <!-- END THEME STYLES -->
-	<link href="<?php site_url(); ?>dist/table/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-    <!-- <link href="<?php site_url(); ?>data_umum/table/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-    <link href="<?php site_url(); ?>dist/table/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
-    <link href="<?php site_url(); ?>dist/table/dist/css/sb-admin-2.css" rel="stylesheet">
-    <link href="<?php site_url(); ?>dist/table/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-    <link href="<?php site_url(); ?>dist/table/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo site_url(); ?>dist/table/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <!-- <link href="<?php echo site_url(); ?>data_umum/table/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="<?php echo site_url(); ?>dist/table/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <link href="<?php echo site_url(); ?>dist/table/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="<?php echo site_url(); ?>dist/table/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="<?php echo site_url(); ?>dist/table/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <!-- BEGIN HEAD -->
 <body class="">
@@ -82,11 +78,6 @@
     </div>
 </div>
 
-<script src="vendors/jquery/jquery.min.js"></script>
-<script src="vendors/tether/js/tether.min.js"></script>
-<script src="vendors/bootstrap/js/bootstrap.min.js"></script>
-<script src="js/dropdown.animate.js"></script>
-
 
 </body>
 <?php echo $this->load->view('share/footer', '', TRUE);?>
@@ -122,13 +113,13 @@
     })(jQuery);
 
 </script>
-  <script src="<?php site_url(); ?>dist/table/vendor/metisMenu/metisMenu.min.js"></script>
+  <script src="<?php echo site_url(); ?>dist/table/vendor/metisMenu/metisMenu.min.js"></script>
 
-        <script src="<?php site_url(); ?>dist/table/vendor/datatables/js/jquery.dataTables.min.js"></script>
-        <script src="<?php site_url(); ?>dist/table/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-        <script src="<?php site_url(); ?>dist/table/vendor/datatables-responsive/dataTables.responsive.js"></script>
+        <script src="<?php echo site_url(); ?>dist/table/vendor/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="<?php echo site_url(); ?>dist/table/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+        <script src="<?php echo site_url(); ?>dist/table/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
-        <script src="<?php site_url(); ?>dist/table/dist/js/sb-admin-2.js"></script>
+        <script src="<?php echo site_url(); ?>dist/table/dist/js/sb-admin-2.js"></script>
 
 
         <script>

@@ -14,8 +14,6 @@
 
 
 
-    <!-- BEGIN THEME STYLES -->
-   <?php echo $this->load->view('share/css', '', TRUE);?>
     <!-- END THEME STYLES -->
 	<link href="<?php site_url(); ?>dist/table/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
     <!-- <link href="<?php site_url(); ?>data_umum/table/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -30,8 +28,8 @@
 <?php echo $this->load->view('share/menu', '', TRUE);?>
 
 <div class="header-default">
-  
-   
+
+
 </div>
 <div class="job-overview">
     <header class="job-overview__header">
@@ -43,7 +41,7 @@
     <div class="container">
 	   <?php echo $this->session->flashdata('pesan')?>
         <div class="row">
-			
+
             <div class="col-lg-12">
 			<div>
 			<center><a href="<?php echo site_url();?>tambah_jadwal_mobil" type="submit" class="btn btn-success btn-sm">Tambah Jadwal</a></center>
@@ -64,7 +62,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                                     <?php	
+                                     <?php
 											$j=0;
 													foreach($data_mobil1 as $data){
 											?>
@@ -72,14 +70,14 @@
                                         <td><?php echo ++$j?></td>
                                         <td><?php echo $data->tgl_update; ?></td>
                                         <td><?php echo $data->waktu; ?></td>
-                                        <td><?php echo $data->alamat; ?></td>                                     
-										
+                                        <td><?php echo $data->alamat; ?></td>
+
 										<td><a href="<?php echo base_url()?>edit_bidan?id=<?php echo $data->id?>"  ><button type="button" class="btn btn-success">Edit</button></a></td>
 										<?php
 										echo"<td class='center'><a href='". base_url()."login/proses_hapus_jadwal_mobil?id=".$data->id."' onclick=\"return confirm('Apakah Anda Yakin Menghapus ?') \" title='Hapus'><button type='button' class='btn btn-danger'>Hapus</button></a>
 										</td>";
 										?>
-                                      
+
                                     </tr>
                                     <?php } ?>
                 </tbody>
@@ -91,11 +89,6 @@
         </div>
     </div>
 </div>
-
-<script src="vendors/jquery/jquery.min.js"></script>
-<script src="vendors/tether/js/tether.min.js"></script>
-<script src="vendors/bootstrap/js/bootstrap.min.js"></script>
-<script src="js/dropdown.animate.js"></script>
 
 
 </body>
@@ -130,7 +123,7 @@
             });
         });
     })(jQuery);
-	
+
 </script>
   <script src="<?php site_url(); ?>dist/table/vendor/metisMenu/metisMenu.min.js"></script>
 

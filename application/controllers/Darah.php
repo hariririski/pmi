@@ -48,7 +48,8 @@ class Darah extends CI_Controller {
 
 	public function permintaan_darah()
 	{
-		$this->load->view('permintaan_darah');
+		$data['pmi'] = $this->M_pmi->lihat();
+		$this->load->view('permintaan_darah',$data);
 	}
 
 	public function tambah_stok()

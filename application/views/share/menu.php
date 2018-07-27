@@ -24,9 +24,29 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="<?php echo site_url();?>home" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
                             </li>
+                            <?php
+                               $rs=$this->session->userdata('rs');
+                               if(isset($rs)){
+                            ?>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Info Pelayanan Darah</a>
+								                <div class="dropdown-menu" data-dropdown-in="zoomIn" data-dropdown-out="zoomOut">
+                                    <a class="dropdown-item" href="<?php echo site_url();?>permintaan_darah">Permintaan Darah</a>
+                                    <a class="dropdown-item" href="<?php echo site_url();?>pemesanan/status_permintaan_darah">Status Permintaan</a>
+
+                                </div>
+						                </li>
+                          <?php }?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="<?php echo site_url();?>darah/lihat_stok_darah" role="button" aria-haspopup="true" aria-expanded="false">Stok Darah</a>
                             </li>
+                            <?php
+                               $user=$this->session->userdata('user');
+                               $rs=$this->session->userdata('rs');
+                               if(isset($rs)||isset($user)){
+                               }
+                               else{
+                            ?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Info Pelayanan Darah</a>
 								                <div class="dropdown-menu" data-dropdown-in="zoomIn" data-dropdown-out="zoomOut">
@@ -38,6 +58,7 @@
                                     <a class="dropdown-item" href="<?php echo site_url();?>serba_serbi">Serba-Serbi Darah</a>
                                 </div>
 						                </li>
+                          <?php }?>
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="<?php echo site_url();?>lihat_jadwal_mobil" role="button" aria-haspopup="true" aria-expanded="false">Jadwal Mobil</a>
 
@@ -56,6 +77,10 @@
 
                                 </div>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="<?php echo site_url();?>pemesanan/data_permintaan" role="button" aria-haspopup="true" aria-expanded="false">Data Permintaan Darah</a>
+                            </li>
+
                             <?php } ?>
                             <?php
                                $rs=$this->session->userdata('rs');
