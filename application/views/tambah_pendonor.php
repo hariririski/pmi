@@ -68,10 +68,22 @@
 			</select>
 			</div>
             <div class="col-lg-5">
-                <div class="form-group">
-                    <input type="text" name='gol_darah' class="form-control" placeholder="Golongan Darah">
-                </div>
-            </div>
+			 
+			<select class="form-control" aria-hidden="true" name='gol_darah'>
+            <option>Golongan Darah</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            <option>O+</option>
+            <option>O-</option>
+			</select>
+			</div>
+			<br>
+			<br>
+			<br>
 			<div class="col-lg-5">
                 <div class="form-group">
                     <input type="text" name='no_hp' class="form-control" placeholder="No HP">

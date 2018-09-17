@@ -90,7 +90,6 @@
                                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Setting</a>
                                 <div class="dropdown-menu" data-dropdown-in="zoomIn" data-dropdown-out="zoomOut">
                                     <a class="dropdown-item" href="<?php echo site_url();?>darah/lihat_stok_darah">Profile Rumah Sakit</a>
-                                    <a class="dropdown-item" href="<?php echo site_url();?>darah/lihat_stok_darah">Permintaan Darah</a>
                                     <a class="dropdown-item" href="<?php echo site_url();?>tambah_ukuran">Ubah Password</a>
 
                                 </div>
@@ -110,7 +109,7 @@
                                     <a class="dropdown-item" href="<?php echo site_url();?>lihat_jadwal_mobil">Tambah Mobil Unit</a>
                                     <a class="dropdown-item" href="<?php echo site_url();?>komponen">Tambah Komponen</a>
                                     <a class="dropdown-item" href="<?php echo site_url();?>rs/tambah_rs">Tambah Rumah Sakit</a>
-                                    <a class="dropdown-item" href="<?php echo site_url();?>rs/pmi">Tambah PMI</a>
+                                    <a class="dropdown-item" href="<?php echo site_url();?>pmi">Tambah PMI</a>
                                 </div>
 						                </li>
                             <?php } ?>

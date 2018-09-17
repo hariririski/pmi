@@ -43,9 +43,6 @@
         <div class="row">
 
             <div class="col-lg-12">
-			<div>
-			<center><a href="<?php echo site_url();?>tambah_jadwal_mobil" type="submit" class="btn btn-success btn-sm">Tambah Jadwal</a></center>
-			</div>
 			<br>
           <div class="card card-outline-info mb-3">
           <div class="card-header bg-info">Lihat Jadwal Mobil</div>

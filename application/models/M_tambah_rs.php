@@ -7,7 +7,9 @@
                     $alamat = $this->input->post('alamat');
                     $type = $this->input->post('type');
                     $email = $this->input->post('email');
-                    
+                    $password = $this->input->post('password');
+                    $password=md5($password);
+					
 					$data = array(
                        'id_rs'=>$id,
                         'nm_rs'=>$nama,
@@ -15,6 +17,7 @@
                         'alamat'=>$alamat,
                         'type'=>$type,
                         'email'=>$email,
+                        'password'=>$password,
                             
   				 
                     );
